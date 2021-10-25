@@ -52,5 +52,18 @@ class ProductRepositoryTest {
         log.info ( "Product returned from database -> {}", products );
     }
 
+    @Test
+    public void findExistingProductById(){
+       Product existingProduct = productRepositoryImpl.findById ( 110L).orElse (null  );
+       assertThat ( existingProduct ).isNotNull ();
+       log.info ( "Product -> {}", existingProduct );
+    }
+    @Test
+    public void deleteExistingProductById(){
+        assertThat ( productRepositoryImpl.findById ( 110L ). orElse ( null )).isNotNull ();
+        productRepositoryImpl.deleteById ( 110L );
+        assertThat ( productRepositoryImpl.findById ( 110L ). orElse ( null )).isNull ();
+
+    }
 
 }
