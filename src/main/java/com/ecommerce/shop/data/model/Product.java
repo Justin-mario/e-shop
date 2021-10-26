@@ -30,4 +30,10 @@ public class Product {
     @ToString.Exclude
     private List<Feedback> feedbacks;
 
+    @Override
+    public int hashCode() {
+        return getClass ().hashCode ();
+    }
+
+
 }

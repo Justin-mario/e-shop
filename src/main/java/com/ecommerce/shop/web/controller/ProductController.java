@@ -36,4 +36,14 @@ public class ProductController {
         productServiceImpl.deleteById ( id );
         return ResponseEntity.noContent ().build ();
     }
+
+    @GetMapping("/{id}")
+    public Product getOneProduct(@PathVariable Long id){
+       return productServiceImpl.findById ( id );
+    }
+
+    @PutMapping("/{id}")
+    public Product UpdateProduct(@RequestBody Product product, @PathVariable Long id){
+       return productServiceImpl.update ( product, id );
+    }
 }
