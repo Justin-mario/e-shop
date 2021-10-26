@@ -20,6 +20,23 @@ public class ProductServiceImpl implements ProductService{
     }
 
     @Override
+    public Product update(Product newProduct, Long id) {
+        return productRepository.findById(id)
+                .map( product -> {
+                    product.setName (newProduct.getName());
+                    product.setPrice (newProduct.getPrice ());
+                    product.setCurrency ( newProduct.getCurrency () );
+                    product.setDetails ( newProduct.getDetails () );
+                    return productRepository.save( product );
+                })
+                .orElseGet(() -> {
+                    newProduct.setId(id);
+                    return productRepository.save(newProduct);
+                });
+
+    }
+
+    @Override
     public List<Product> findAll() {
         return productRepository.findAll ();
     }
